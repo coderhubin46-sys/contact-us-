@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Femttoss</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #06B6D4;
+            --dark-blue: #0891B2;
+            --deep-gray: #1F2937;
+            --pure-white: #ffffff;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Nunito Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: #fcfcfc;
+            color: var(--deep-gray);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: var(--pure-white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-gray);
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--primary-blue); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 450px;
+            background: linear-gradient(rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.2)), 
+                        url('https://images.unsplash.com/photo-1541675154750-0444c7d51e8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute; width: 100%; height: 100%;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            position: relative; z-index: 2; text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 60px 100px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 50px;
+            color: var(--pure-white);
+            letter-spacing: -1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- Info Line --- */
+        .contact-intro {
+            text-align: center; width: 100%; padding: 80px 8% 20px;
+            position: relative; z-index: 10;
+        }
+
+        .contact-intro h2 {
+            font-family: var(--font-heading);
+            color: var(--deep-gray);
+            font-size: 28px; font-weight: 700;
+            max-width: 800px; margin: 0 auto; line-height: 1.4;
+        }
+
+        /* --- Cards --- */
+        .contact-cards-container { padding: 40px 8% 100px; position: relative; z-index: 5; }
+        .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card {
+            background: var(--pure-white); padding: 40px; border-radius: 20px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s ease; border: 1px solid #f0f0f0;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary-blue); }
+        .card h3 { font-family: var(--font-heading); margin: 15px 0 10px; font-size: 18px; color: var(--deep-gray); }
+        .card p { color: #64748b; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        .card a.btn-link {
+            display: inline-block; padding: 10px 25px; border: 2px solid var(--primary-blue);
+            color: var(--primary-blue); text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 12px; text-transform: uppercase; transition: 0.3s;
+        }
+        .card a.btn-link:hover { background: var(--primary-blue); color: var(--pure-white); }
+
+        /* --- Form & Map --- */
+        .form-map-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; padding: 60px 8% 100px; background: #fdfdfd; }
+        .form-container h2 { font-family: var(--font-heading); font-size: 32px; margin-bottom: 30px; color: var(--deep-gray); }
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: span 2; }
+        input, select, textarea { width: 100%; padding: 15px; border: 1px solid #e0e0e0; border-radius: 8px; outline: none; font-family: var(--font-body); }
+        input:focus, textarea:focus { border-color: var(--primary-blue); }
+        .submit-btn { background: var(--primary-blue); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 20px; }
+
+        .map-container iframe { width: 100%; height: 100%; min-height: 450px; border-radius: 20px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        /* --- FOOTER REDESIGN (#06B6D4) --- */
+        footer {
+            background-color: var(--primary-blue);
+            padding: 80px 8% 40px;
+            color: var(--pure-white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            display: block;
+            color: #ffffff;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .footer-col ul li a:hover { padding-left: 5px; color: #ffffff; }
+
+        .contact-info-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        /* --- NEWSLETTER SECTION --- */
+        .newsletter-wrap {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        .newsletter-wrap h3 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-wrap p {
+            font-size: 14px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .email-card {
+            background: #ffffff;
+            padding: 8px;
+            border-radius: 12px;
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .email-card input {
+            border: none;
+            flex: 1;
+            padding: 12px 20px;
+            font-family: var(--font-body);
+            outline: none;
+            color: var(--deep-gray);
+        }
+
+        .email-card button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .email-card button:hover { background: var(--deep-gray); }
+
+        .footer-bottom {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid, .form-map-section { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .email-card { flex-direction: column; background: transparent; box-shadow: none; padding: 0; gap: 10px; }
+            .email-card input { border-radius: 8px; }
+            .hero-content { padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <a href="#" class="logo">femttoss</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Connect</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Contact us</h1>
+        </div>
+    </header>
+
+    <!-- Intro Line -->
+    <div class="contact-intro">
+        <h2>We're here for you whenever you need help with your journey</h2>
+    </div>
+
+    <!-- Cards -->
+    <section class="contact-cards-container">
+        <div class="contact-grid">
+            <div class="card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <h3>Email us</h3>
+                <p>reachus@femttoss.com<br>We reply within 24 hours.</p>
+                <a href="mailto:reachus@femttoss.com" class="btn-link">Email now</a>
+            </div>
+
+            <div class="card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.8 8.5 8.5 0 0 1 4.7 1.4L22 3l-1.5 6.5A8.38 8.38 0 0 1 21 11.5z"></path></svg>
+                <h3>WhatsApp</h3>
+                <p>+91 91843 74372<br>Mon-Sat, 10am-6pm.</p>
+                <a href="#" class="btn-link">Chat now</a>
+            </div>
+
+            <div class="card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                <h3>Instagram</h3>
+                <p>@femttoss<br>DM us anytime!</p>
+                <a href="#" class="btn-link">Follow us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form/Map -->
+    <section class="form-map-section">
+        <div class="form-container">
+            <h2>Send us a message</h2>
+            <form>
+                <div class="input-grid">
+                    <input type="text" placeholder="Full name *" required>
+                    <input type="email" placeholder="Email *" required>
+                    <input type="text" placeholder="Phone number" class="full-width">
+                    <select class="full-width">
+                        <option>General Inquiry</option>
+                        <option>Order Status</option>
+                    </select>
+                    <textarea rows="5" placeholder="Message" class="full-width"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send message</button>
+            </form>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124737.18424108627!2d76.565649!3d12.30815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65a4c515454c7%3A0x33e6962c62c96c21!2sMysuru%2C%20Karnataka%2C%20India!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Col 1 -->
+            <div class="footer-col">
+                <span class="footer-logo">femttoss</span>
+                <p style="font-size: 14px; opacity: 0.9; line-height: 1.6;">Your journey to a comfortable and sustainable period experience starts with us.</p>
+            </div>
+            <!-- Col 2 -->
+            <div class="footer-col">
+                <h4>Menu</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Shop all</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Col 3 -->
+            <div class="footer-col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">Shipping & payments</a></li>
+                    <li><a href="#">Returns & refunds</a></li>
+                    <li><a href="#">Terms & conditions</a></li>
+                    <li><a href="#">Privacy policy</a></li>
+                </ul>
+            </div>
+            <!-- Col 4 -->
+            <div class="footer-col">
+                <h4>Contact us</h4>
+                <ul class="contact-info-list">
+                    <li>Call: +91 91843 74372</li>
+                    <li>Mail: reachus@femttoss.com</li>
+                    <li>Instagram: @femttoss</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Newsletter Area -->
+        <div class="newsletter-wrap">
+            <h3>Sign up for exclusive offers, period tips & new launches</h3>
+            <p>Join our community and be the first to know about our latest updates.</p>
+            <div class="email-card">
+                <input type="email" placeholder="Enter your email address">
+                <button>Subscribe</button>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 Femttoss India. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
